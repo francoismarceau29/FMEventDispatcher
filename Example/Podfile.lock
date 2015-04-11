@@ -1,0 +1,14 @@
+PODS:
+  - FMEventDispatcher (0.1.0)
+
+DEPENDENCIES:
+  - FMEventDispatcher (from `../`)
+
+EXTERNAL SOURCES:
+  FMEventDispatcher:
+    :path: ../
+
+SPEC CHECKSUMS:
+  FMEventDispatcher: ba372abe60e08e32ff121e063133bada9fcfa48c
+
+COCOAPODS: 0.35.0

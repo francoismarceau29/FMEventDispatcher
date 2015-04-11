@@ -7,23 +7,36 @@
 //
 
 #import "FMViewController.h"
+#import <FMEventDispatcher/FMEventDispatcher.h>
 
 @interface FMViewController ()
-
 @end
 
 @implementation FMViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[FMEventDispatcher sharedDispatcher] addEventObserver:self];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[FMEventDispatcher sharedDispatcher] removeEventObserver:self];
+}
+
+//------------------------------------------------------------------------------
+#pragma mark - EventDispatcher
+//------------------------------------------------------------------------------
+- (void)myFirstSelector {
+    NSLog(@"<=== MyFirstSelector ===>");
+}
+
+- (void)mySecondSelector:(UIApplication *)application {
+    NSLog(@"<=== MySecondSelector application:%@ ===>", application);
+}
+
+- (void)myThirdSelector:(UIApplication *)application secondObject:(NSString *)secondObject {
+    NSLog(@"<=== MyThirdSelector application:%@ - secondObject:%@ ===>", application, secondObject);
 }
 
 @end
